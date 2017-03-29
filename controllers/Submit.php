@@ -1,10 +1,10 @@
 <?php
 
-class Home extends Controller {
+class Submit extends Controller {
 
   public static function init() {
 
-    $title = 'Home : Google Form Submitter';
+    $title = 'Submit : Google Form Submitter';
 
     return get_defined_vars();
   }
