@@ -48,6 +48,9 @@ function req(n) {
 
   var da = {
   };
+
+  var entry= "";
+  var value = "";
   //alert(JSON.stringify(da, null, 4));
   for(var i=1;i<=n;i++) {
 
@@ -57,11 +60,34 @@ function req(n) {
     val1 = $(str1).val();
     val2 = $(str2).val();
 
+    if(i == 1) {
+      entry += val1;
+      value += val2;
+    }
+    else {
+      entry = entry + "|" + val1;
+      value = value + "|" + val2;
+    }
+
     da[val1] = val2;
   }
 
   var total = $('#sub').val();
   var url = $('#url').val();
+
+  var da1 = {};
+  da1['url'] = url;
+  da1['number'] = n;
+  da1['submissions'] = total;
+  da1['entry'] = entry;
+  da1['value'] = value;
+
+  $.ajax({
+    url: "/database",
+    type: "post",
+    data: da1
+
+  });
 
   for(var i=0;i<total;i++) {
 

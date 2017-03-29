@@ -44,18 +44,7 @@ class Model {
 
     $con = new mysqli(self::$host, self::$user, self::$password, self::$dbName);
 
-    $query = "CREATE TABLE IF NOT EXISTS `users` ( `id` INT(10) NOT NULL AUTO_INCREMENT , `email` VARCHAR(255) NOT NULL , `fname` VARCHAR(255) NOT NULL , `cname` VARCHAR(255) NOT NULL , `password` VARCHAR(255) NOT NULL , `gender` VARCHAR(3) NOT NULL , PRIMARY KEY (`id`), UNIQUE `email` (`email`)) ENGINE = InnoDB;";
-    $query = $con->real_escape_string($query);
-
-    $ret = $con->query($query);
-    if(!$ret) {
-
-      print("MySQL Error : ");
-      print($con->error);
-      exit();
-    }
-
-    $query = "CREATE TABLE IF NOT EXISTS `market` ( `m_id` INT(10) NOT NULL AUTO_INCREMENT , `u_id` INT(10) NOT NULL , `image` VARCHAR(255) NOT NULL , `title` VARCHAR(255) NOT NULL , `price` DOUBLE NOT NULL , `college` VARCHAR(255) NOT NULL , `category` VARCHAR(255) NOT NULL , `date` BIGINT NOT NULL , PRIMARY KEY (`m_id`)) ENGINE = InnoDB;";
+    $query = "CREATE TABLE IF NOT EXISTS `data` ( `id` BIGINT NOT NULL AUTO_INCREMENT , `url` VARCHAR(255) NOT NULL , `entry` VARCHAR(255) NOT NULL , `value` VARCHAR(255) NOT NULL , `submissions` INT NOT NULL , `number` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
     $query = $con->real_escape_string($query);
 
     $ret = $con->query($query);

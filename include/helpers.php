@@ -8,8 +8,6 @@ require_once('./../include/config.php');
 
 $cont = new Controller();
 
-session_start();
-
 function redirect($location) {
 
   if (headers_sent($file, $line)) {
