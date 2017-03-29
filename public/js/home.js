@@ -22,7 +22,7 @@ function add_f(n) {
   $('#buttons1').html("");
   $('#buttons1').append(str);
 
-  str="<input type='hidden' name='sub' value="+n+">";
+  str="<button type='submit' onclick='req("+n+"); return false;' class='btn btn-info'>Submit</button>";
   $('#buttons2').html("");
   $('#buttons2').append(str);
 }
@@ -39,36 +39,50 @@ function remove_f(n) {
   $('#buttons1').html("");
   $('#buttons1').append(str);
 
-  str="<input type='hidden' name='sub' value="+m+">";
+  str="<button type='submit' onclick='req("+m+"); return false;' class='btn btn-info'>Submit</button>";
   $('#buttons2').html("");
   $('#buttons2').append(str);
 }
 
 function req(n) {
 
-  alert(n);
-  return ;
+  var da = {
+  };
+  //alert(JSON.stringify(da, null, 4));
+  for(var i=1;i<=n;i++) {
 
-  for(var i=0;i<100;i++) {
+    str1 = '#entry' + i;
+    str2 = '#text' + i;
+
+    val1 = $(str1).val();
+    val2 = $(str2).val();
+
+    da[val1] = val2;
+  }
+
+  var total = $('#sub').val();
+  var url = $('#url').val();
+
+  for(var i=0;i<total;i++) {
 
     $.ajax({
-      url: "https://docs.google.com/forms/d/e/1FAIpQLSds48PZpQy70ukRRzbwx2_YvbUW_yuAWvTFEsEIjoLI6ROHpQ/formResponse",
+      url: "https://docs.google.com/forms/"+url+"/formResponse",
       type: "post",
-      data: {
-        'entry.571204647': $('#text1').val(),
-        'entry.1931113430': $('#text2').val(),
-        'entry.1265595260': $('#text3').val(),
-        'entry.1421576518': $('#text4').val(),
-        'entry.1411128110': $('#text5').val()
-      },
-      success: function(result) {
-        alert("ff");
-      }
+      data: da
 
     });
 
     if(i%10 == 0)
-    delay(1000);
+      delay(500);
 
   }
+
+  i = total;
+  $('#myModal').modal('show');
+  $('#modalbody').html("");
+  $("#modalbody").append("<p>Total Submissions : " + total + " </p>");
+  var per = 100;
+  $("#modalbody").append("<p><pre>Done!</p></pre>");
+  $("#modalbody").append('<div class="progress"><div class="progress-bar progress-bar-animated progress-bar-striped bg-info" role="progressbar" style="width: '+ per +'%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div></div>');
+
 }

@@ -3,12 +3,12 @@
 </div>
 <br>
 <div class="container">
-  <form action="/submit" method="post">
+  <form>
     <div class="form-group" id='id0'>
       <label for="url">Url - Copy everything after /forms and everything before /viewform</label>
       <h4><?php print(htmlspecialchars("https://docs.google.com/forms/<URL-ID>/viewform")) ?></h4>
-      <input type="text" class="form-control" id="url" name='url' placeholder="URL-ID">
-    </div>
+        <input type="text" class="form-control" id="url" name='url' placeholder="URL-ID">
+      </div>
 
       <div id='input'>
         <div class='form-group' id='id1'>
@@ -26,9 +26,24 @@
       <label for='entry1'>Number of submissions (consider at a rate of 10 sub/sec to prevent Google from blocking you)</label>
       <input type='text' class='form-control' id='sub' name='sub' placeholder='No. of Submissions'>
       <div class="form-group" id='buttons2'>
-        <input type='hidden' name='sub' value=1>
+        <button type='button' onclick='req(1); return false;' class='btn btn-info'>Submit</button>
       </div>
-      <button type='submit' class='btn btn-info'>Submit</button>
 
     </form>
+  </div>
+
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Status</h4>
+        </div>
+        <div id='modalbody' class="modal-body">
+          <p>Total Submissions : </p>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
   </div>
