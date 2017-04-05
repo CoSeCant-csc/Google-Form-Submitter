@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 Model::$dbName = '';
 Model::$user = '';
 Model::$password = '';
-Model::$host = 'localhost';
+Model::$host = '';
 
 Model::init();
 
