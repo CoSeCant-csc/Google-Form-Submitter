@@ -81,12 +81,6 @@ function req(n) {
   da1['entry'] = entry;
   da1['value'] = value;
 
-  $.ajax({
-    url: "database",
-    type: "post",
-    data: da1
-  });
-
 
   for(var i=0; i<total; i=i+1) {
     $.ajax({
