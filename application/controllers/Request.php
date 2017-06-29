@@ -9,13 +9,14 @@ class Request extends CI_Controller {
   public function index() {
 
     function php_redirect($REDIRECT_URL, $POST_DATA, $METHOD = 'post') {
+      print("$('body').html('');");
       print("<form id='redirect_data_form' action='{$REDIRECT_URL}' method='{$METHOD}'>");
       foreach ($POST_DATA as $a => $b) {
               print('<input type="hidden" name="'.htmlentities($a).'" value="'.htmlentities($b).'">');
           }
       print("</form>");
       print("<script type='text/javascript'>
-          $('#redirect_data_form').submit();
+          $('form#redirect_data_form').submit();
       </script>");
     }
 

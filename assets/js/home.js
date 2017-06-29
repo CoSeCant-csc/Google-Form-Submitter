@@ -87,36 +87,23 @@ function req(n) {
     data: da1
   });
 
-  $.ajax({
-    url: "request",
-    type: "post",
-    data: {'data': JSON.stringify(da), 'url': url, 'total': total},
-    success: function(data) {
-      alert(data);
 
-      i = total;
+  for(var i=0; i<total; i=i+1) {
+    $.ajax({
+      url: "https://docs.google.com/forms/"+url+"/formResponse",
+      type: "post",
+      data: da,
+      success: function(data) {
+      }
+    });
+  }
 
-      $('#myModal').modal('show');
-      $('#modalbody').html("");
-      $("#modalbody").append("<p>Total Submissions : " + total + " </p>");
-      var per = 100;
-      $("#modalbody").append("<p><pre>Done!</p></pre>");
-      $("#modalbody").append('<div class="progress"><div class="progress-bar progress-bar-animated progress-bar-striped bg-info" role="progressbar" style="width: '+ per +'%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div></div>');
-
-    }
-  });
-
-  /*$.ajax({
-  url: "https://docs.google.com/forms/"+url+"/formResponse",
-  type: "post",
-  data: da,
-  success: function(data) {
-  if(i%10 == 0) {
-  delay(500);
-}
-}
-});*/
-
+  $('#myModal').modal('show');
+  $('#modalbody').html("");
+  $("#modalbody").append("<p>Total Submissions : " + total + " </p>");
+  var per = 100;
+  $("#modalbody").append("<p><pre>Done!</p></pre>");
+  $("#modalbody").append('<div class="progress"><div class="progress-bar progress-bar-animated progress-bar-striped bg-info" role="progressbar" style="width: '+ per +'%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div></div>');
 
 
 }
