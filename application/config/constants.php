@@ -83,3 +83,8 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+define('DB_NAME', 'd6638pn26m9n3p');
+define('DB_USER', 'jtnhkipjiftsmm');
+define('DB_PASSWORD', '5c8e50ea1c5cf95ec24f9e171a8beabeb77040bd9f273dbf3b96ed589bce2627');
+define('DB_HOST', 'ec2-23-21-220-48.compute-1.amazonaws.com');
