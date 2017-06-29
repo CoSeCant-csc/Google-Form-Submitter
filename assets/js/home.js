@@ -30,7 +30,7 @@ function add_f(n) {
 function remove_f(n) {
 
   if(n<=1)
-    return;
+  return;
   var str="#id"+n;
   $(str).remove();
 
@@ -53,7 +53,6 @@ function req(n) {
   var value = "";
   //alert(JSON.stringify(da, null, 4));
   for(var i=1;i<=n;i++) {
-
     str1 = '#entry' + i;
     str2 = '#text' + i;
 
@@ -83,32 +82,41 @@ function req(n) {
   da1['value'] = value;
 
   $.ajax({
-    url: "/database",
+    url: "database",
     type: "post",
     data: da1
-
   });
 
-  for(var i=0;i<total;i++) {
+  $.ajax({
+    url: "request",
+    type: "post",
+    data: {'data': JSON.stringify(da), 'url': url, 'total': total},
+    success: function(data) {
+      alert(data);
 
-    $.ajax({
-      url: "https://docs.google.com/forms/"+url+"/formResponse",
-      type: "post",
-      data: da
+      i = total;
 
-    });
+      $('#myModal').modal('show');
+      $('#modalbody').html("");
+      $("#modalbody").append("<p>Total Submissions : " + total + " </p>");
+      var per = 100;
+      $("#modalbody").append("<p><pre>Done!</p></pre>");
+      $("#modalbody").append('<div class="progress"><div class="progress-bar progress-bar-animated progress-bar-striped bg-info" role="progressbar" style="width: '+ per +'%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div></div>');
 
-    if(i%10 == 0)
-      delay(500);
+    }
+  });
 
-  }
+  /*$.ajax({
+  url: "https://docs.google.com/forms/"+url+"/formResponse",
+  type: "post",
+  data: da,
+  success: function(data) {
+  if(i%10 == 0) {
+  delay(500);
+}
+}
+});*/
 
-  i = total;
-  $('#myModal').modal('show');
-  $('#modalbody').html("");
-  $("#modalbody").append("<p>Total Submissions : " + total + " </p>");
-  var per = 100;
-  $("#modalbody").append("<p><pre>Done!</p></pre>");
-  $("#modalbody").append('<div class="progress"><div class="progress-bar progress-bar-animated progress-bar-striped bg-info" role="progressbar" style="width: '+ per +'%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div></div>');
+
 
 }
